@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 const CreateProduct = () => {
   const [inputs, setInputs] = useState({})
@@ -11,8 +12,16 @@ const CreateProduct = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(inputs);
+    axios.post("http://localhost/connect.php", inputs)
+      .then(response => {
+        console.log("Server Response:", response.data);
+        console.log(inputs);
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
   }
+  
   return (
     <div>
       <h1>Create Product</h1>
@@ -45,14 +54,6 @@ const CreateProduct = () => {
               </td>
             </tr>
 
-            <tr>
-              <th>
-              <label>In stock: </label>
-              </th>
-              <td>
-              <input type = "text" name = "inStock" onChange={handleChange} />
-              </td>
-            </tr>
             <tr>
               <td>
               <button>Save</button>
