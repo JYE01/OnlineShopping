@@ -7,7 +7,7 @@ import ProductAdmin from "./pages/ProductAdmin"
 import Baby from './pages/Baby';
 import Bakery from './pages/Bakery';
 import Dairy from './pages/Dairy';
-import Fridge from './pages/Fridge';
+import Freezer from './pages/Freezer';
 import FruitVeg from './pages/FruitVeg';
 import Lifestyle from './pages/Lifestyle';
 import Meat from './pages/Meat';
@@ -23,7 +23,7 @@ function App() {
         <Route path = "Meat" element ={<Meat />} />
         <Route path = "FruitVeg" element ={<FruitVeg />} /> 
         <Route path = "Dairy" element ={<Dairy />} />
-        <Route path = "Fridge" element ={<Fridge />} />
+        <Route path = "Freezer" element ={<Freezer />} />
         <Route path = "Bakery" element ={<Bakery />} />
         <Route path = "Lifestyle" element ={<Lifestyle />} />
         <Route path = "Baby" element ={<Baby />} />

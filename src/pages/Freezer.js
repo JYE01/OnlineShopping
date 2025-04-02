@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const Fridge = () => {
+const Freezer = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const productType = "Fridge"; 
+    const productType = "Freezer"; 
     
     axios
       .get(`http://localhost/connect.php?type=${productType}`)
@@ -19,7 +19,7 @@ const Fridge = () => {
 
   return (
     <div>
-      <h1>Fridge</h1>
+      <h1>Freezer</h1>
       <table border="1">
         <thead>
           <tr>
@@ -42,4 +42,4 @@ const Fridge = () => {
   );
 };
 
-export default Fridge;
+export default Freezer;

@@ -19,7 +19,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Fruit & Vegetables</h1>
+      <h1>All Products</h1>
       <table border="1">
         <thead>
           <tr>

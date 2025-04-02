@@ -42,8 +42,8 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/Fridge" className="text-white block p-2 hover:bg-blue-500">
-              Fridge
+            <Link to="/Freezer" className="text-white block p-2 hover:bg-blue-500">
+              Freezer
             </Link>
           </li>
           <li>
