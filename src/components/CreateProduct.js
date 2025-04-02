@@ -55,6 +55,15 @@ const CreateProduct = () => {
             </tr>
 
             <tr>
+              <th>
+              <label>Type: </label>
+              </th>
+              <td>
+              <input type = "text" name = "type" onChange={handleChange} />
+              </td>
+            </tr>
+
+            <tr>
               <td>
               <button>Save</button>
               </td>

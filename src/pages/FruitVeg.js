@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const Home = () => {
+const FruitVeg = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const productType = ""; 
+    const productType = "FruitVeg"; 
     
     axios
       .get(`http://localhost/connect.php?type=${productType}`)
@@ -42,4 +42,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default FruitVeg;
