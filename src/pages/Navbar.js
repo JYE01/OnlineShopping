@@ -1,74 +1,37 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { ShoppingCart, User } from "lucide-react";
+import './navbar.css';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   return (
-    <nav className="bg-blue-600 p-4 shadow-md">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* Logo */}
-        <Link to="/Home" className="text-white text-xl font-bold">
-          Online Shopping Mall
-        </Link>
-
-        {/* Hamburger Menu (Mobile) */}
-        <button
-          className="text-white md:hidden"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          ☰
-        </button>
-
-        {/* Links */}
-        <ul
-          className={`md:flex md:space-x-6 absolute md:static bg-blue-600 md:bg-transparent w-full md:w-auto transition-all ${
-            isOpen ? "top-16 left-0 p-4" : "hidden md:flex"
-          }`}
-        >
-          <li>
-            <Link to="/Meat" className="text-white block p-2 hover:bg-blue-500">
-              Meat
-            </Link>
-          </li>
-          <li>
-            <Link to="/FruitVeg" className="text-white block p-2 hover:bg-blue-500">
-              Fruit & Veg
-            </Link>
-          </li>
-          <li>
-            <Link to="/Dairy" className="text-white block p-2 hover:bg-blue-500">
-              Dairy
-            </Link>
-          </li>
-          <li>
-            <Link to="/Freezer" className="text-white block p-2 hover:bg-blue-500">
-              Freezer
-            </Link>
-          </li>
-          <li>
-            <Link to="/Bakery" className="text-white block p-2 hover:bg-blue-500">
-              Bakery
-            </Link>
-          </li>
-          <li>
-            <Link to="/LifeStyle" className="text-white block p-2 hover:bg-blue-500">
-              Home & Lifestyle
-            </Link>
-          </li>
-          <li>
-            <Link to="/Baby" className="text-white block p-2 hover:bg-blue-500">
-              Baby
-            </Link>
-          </li>
-          <li>
-            <Link to="/Pet" className="text-white block p-2 hover:bg-blue-500">
-              Pet
-            </Link>
-          </li>
-        </ul>
+    <div className="topnav">
+      {/* Left Side Links */}
+      <div className="nav-left">
+        <Link to="/Home" className={location.pathname === "/Home" ? "active" : ""}>Home</Link>
+        <Link to="/Meat" className={location.pathname === "/Meat" ? "active" : ""}>Meat</Link>
+        <Link to="/FruitVeg" className={location.pathname === "/FruitVeg" ? "active" : ""}>Fruit & Veg</Link>
+        <Link to="/Dairy" className={location.pathname === "/Dairy" ? "active" : ""}>Dairy</Link>
+        <Link to="/Freezer" className={location.pathname === "/Freezer" ? "active" : ""}>Freezer</Link>
+        <Link to="/Bakery" className={location.pathname === "/Bakery" ? "active" : ""}>Bakery</Link>
+        <Link to="/LifeStyle" className={location.pathname === "/LifeStyle" ? "active" : ""}>Home & Lifestyle</Link>
+        <Link to="/Baby" className={location.pathname === "/Baby" ? "active" : ""}>Baby</Link>
+        <Link to="/Pet" className={location.pathname === "/Pet" ? "active" : ""}>Pet</Link>
       </div>
-    </nav>
+
+      {/* Right Side Icons */}
+      <div className="nav-right">
+        <Link to="/Account" className={location.pathname === "/Account" ? "active" : ""}>
+          <User size={20} style={{ verticalAlign: "middle", marginRight: "5px" }} />
+          Account
+        </Link>
+        <Link to="/Cart" className={location.pathname === "/Cart" ? "active" : ""}>
+          <ShoppingCart size={20} style={{ verticalAlign: "middle", marginRight: "5px" }} />
+          Cart
+        </Link>
+      </div>
+    </div>
   );
 };
 
