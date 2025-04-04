@@ -7,7 +7,6 @@ const Navbar = () => {
 
   return (
     <div className="topnav">
-      {/* Left Side Links */}
       <div className="nav-left">
         <Link to="/Home" className={location.pathname === "/Home" ? "active" : ""}>Home</Link>
         <Link to="/Meat" className={location.pathname === "/Meat" ? "active" : ""}>Meat</Link>
@@ -20,7 +19,6 @@ const Navbar = () => {
         <Link to="/Pet" className={location.pathname === "/Pet" ? "active" : ""}>Pet</Link>
       </div>
 
-      {/* Right Side Icons */}
       <div className="nav-right">
         <Link to="/Account" className={location.pathname === "/Account" ? "active" : ""}>
           <User size={20} style={{ verticalAlign: "middle", marginRight: "5px" }} />
