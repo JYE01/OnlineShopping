@@ -1,15 +1,25 @@
 /* Home.css */
-.home-container {
-    text-align: center;
+  .home-container {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px; /* Add some space between elements */
     padding: 20px;
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
+  }
+
+  .title-search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
   }
   
   .title {
     font-size: 2rem;
     margin-bottom: 20px;
     color: #2a9d8f;
+    text-align: center;
   }
   
   /* Category Tabs */
@@ -102,3 +112,33 @@
     background-color: #218838;
   }
   
+  @media (max-width: 768px) {
+    .title-search-container {
+      flex-direction: column; /* Stack title and search bar vertically */
+      align-items: center; /* Center align the items */
+    }
+  
+    .title {
+      font-size: 1.5rem; /* Reduce title size for smaller screens */
+      margin-bottom: 10px; /* Adjust spacing */
+    }
+    
+    .search-input {
+      width: 100%; /* Ensure the search input takes full width on smaller screens */
+      max-width: 300px; /* Limit maximum width */
+    }
+    
+    .search-container {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .title {
+      font-size: 1.2rem; /* Further reduce font size on very small screens */
+    }
+  
+    .search-input {
+      max-width: 250px; /* Reduce search input size even more on very small screens */
+    }
+  }

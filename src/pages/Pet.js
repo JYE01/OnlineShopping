@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import SearchBar from "../components/SearchBar";
 
 const Pet = () => {
   const [products, setProducts] = useState([]);
@@ -39,7 +40,10 @@ const Pet = () => {
 
   return (
     <div className="home-container">
-      <h1 className="title">🐶 Pet</h1>
+      <div className="title-search-container">
+        <h1 className="title">🐶 Pet</h1>
+        <SearchBar />
+      </div>
       <div className="product-grid">
         {displayedProducts.map((product) => (
           <div className="product-card" key={product.id}>
