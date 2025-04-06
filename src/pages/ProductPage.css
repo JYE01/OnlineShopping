@@ -1,0 +1,58 @@
+/* Related Products Section */
+.related-products {
+    margin-top: 40px;
+  }
+  
+  .related-products-scroll {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+  }
+  
+  .product-cards-container {
+    display: flex;
+    gap: 20px;
+    overflow: hidden; /* Hide anything that overflows */
+  }
+  
+  .product-card {
+    width: 200px; /* or any width you prefer */
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .product-card h4 {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .product-card p {
+    font-size: 14px;
+    color: #888;
+  }
+  
+  /* Navigation Buttons */
+  .prev-button, .next-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .prev-button:disabled, .next-button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+  

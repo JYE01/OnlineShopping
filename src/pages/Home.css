@@ -68,9 +68,29 @@
     width: 200px;
     transition: transform 0.2s ease-in-out;
   }
+
+  .product-grid a:link {
+    text-decoration: none;
+    color: black;
+  }
   
+  .product-grid a:visited {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .product-grid a:hover {
+    text-decoration: none;
+    color: #28a745;
+  }
+  
+  .product-grid a:active {
+    text-decoration: none;
+  }
+
   .product-card:hover {
     transform: scale(1.05);
+    transition: transform 0.3s ease;
   }
   
   .product-image {
@@ -142,3 +162,5 @@
       max-width: 250px; /* Reduce search input size even more on very small screens */
     }
   }
+
+  

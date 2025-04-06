@@ -13,6 +13,7 @@ import Lifestyle from './pages/Lifestyle';
 import Meat from './pages/Meat';
 import Pet from './pages/Pet';
 import Cart from './pages/Cart';
+import ProductPage from './pages/ProductPage';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path = "Pet" element ={<Pet />} />
         <Route path = "Account" element ={<Account />} />
         <Route path = "Cart" element ={<Cart />} />
+        <Route path = "Product/:name" element ={<ProductPage />} />
         <Route path = "ProductAdmin" element ={<ProductAdmin />} />
       </Route>
     </Routes>

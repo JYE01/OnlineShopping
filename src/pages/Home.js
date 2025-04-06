@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Home.css";
 import SearchBar from "../components/SearchBar";
+import { Link } from "react-router-dom";
+
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -47,7 +49,7 @@ const Home = () => {
       </div>
       <div className="product-grid">
         {displayedProducts.map((product) => (
-          <div className="product-card" key={product.id}>
+          <Link to={`/product/${encodeURIComponent(product.name)}`} className="product-card" key={product.id}>
             <img
               src={product.image}
               alt={product.name}
@@ -57,7 +59,7 @@ const Home = () => {
             <p className="product-price">${product.price}</p>
             <p className="product-quantity">Stock: {product.quantity}</p>
             <button className="add-to-cart">Add to Cart</button>
-          </div>
+          </Link>
         ))}
       </div>
       {displayedProducts.length < products.length && (
