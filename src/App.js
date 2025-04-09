@@ -14,10 +14,11 @@ import Meat from './pages/Meat';
 import Pet from './pages/Pet';
 import Cart from './pages/Cart';
 import ProductPage from './pages/ProductPage';
+import { CartProvider } from './components/CartContext';
 
 function App() {
   return (
-    <>
+    <CartProvider>
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element = {<Home />} />
@@ -36,7 +37,7 @@ function App() {
         <Route path = "ProductAdmin" element ={<ProductAdmin />} />
       </Route>
     </Routes>
-    </>
+    </CartProvider>
   );
 }
 

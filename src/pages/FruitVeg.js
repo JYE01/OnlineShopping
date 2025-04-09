@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SearchBar from "../components/SearchBar";
+import { Link } from "react-router-dom";
+import { useCart } from "../components/CartContext";
+import { toast } from "react-toastify";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const FruitVeg = () => {
   const [products, setProducts] = useState([]);
   const [displayedProducts, setDisplayedProducts] = useState([]);
   const [page, setPage] = useState(1);
   const productsPerPage = 18;
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const productType = "FruitVeg"; 
@@ -38,6 +44,11 @@ const FruitVeg = () => {
     setDisplayedProducts(products.slice(0, productsPerPage));
   }
 
+  const handleAddToCart = (product) => {
+    addToCart(product); 
+    toast.success(`${product.name} added to cart!`);
+  };
+
   return (
     <div className="home-container">
       <div className="title-search-container">
@@ -47,18 +58,23 @@ const FruitVeg = () => {
       <div className="product-grid">
         {displayedProducts.map((product) => (
           <div className="product-card" key={product.id}>
-            <img
-              src={product.image}
-              alt={product.name}
-              className="product-image"
-            />
-            <h2 className="product-name">{product.name}</h2>
-            <p className="product-price">${product.price}</p>
-            <p className="product-quantity">Stock: {product.quantity}</p>
-            <button className="add-to-cart">Add to Cart</button>
+            <Link to={`/product/${encodeURIComponent(product.name)}`} className="product-link">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="product-image"
+              />
+              <h2 className="product-name">{product.name}</h2>
+              <p className="product-price">${product.price}</p>
+              <p className="product-quantity">Stock: {product.quantity}</p>
+            </Link>
+            <button onClick={() => handleAddToCart(product)} className="add-to-cart">
+              Add to Cart
+            </button>
           </div>
         ))}
       </div>
+      <ToastContainer />
       {displayedProducts.length < products.length && (
         <button className="load-more" onClick={loadMore}>
           Load More

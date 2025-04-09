@@ -14,7 +14,7 @@
 .nav-left {
   display: flex;
   flex-wrap: wrap;
-  flex-grow: 1; /* This ensures the left side takes up available space */
+  flex-grow: 1; 
 }
 
 .nav-left a {
@@ -34,13 +34,15 @@
 
 .nav-right {
   display: flex;
-  justify-content: flex-end;  /* Align items to the right */
+  justify-content: flex-end;  
   align-items: center;
-  margin-left: auto;  /* Pushes the nav-right section to the far right */
+  margin-left: auto;  
+  position: relative;
 }
 
 .nav-right a {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   color: #f2f2f2;
   text-align: center;
   padding: 16px;
@@ -114,10 +116,13 @@
   }
 
   .nav-right {
-    margin-left: auto;
-    order: 2;
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    margin-left: auto; 
+    position: relative; 
   }
-
+  
   .nav-search {
     order: 3;
     width: 100%;

@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ShoppingCart, User, Menu } from "lucide-react";
+import { useCart } from "../components/CartContext";
 import './navbar.css';
 
 const Navbar = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const { cart } = useCart();
+  const cartItemCount = cart.length;
 
   return (
     <>
@@ -35,6 +38,9 @@ const Navbar = () => {
             <span className="hide-on-mobile">Account</span>
           </Link>
           <Link to="/Cart" className={location.pathname === "/Cart" ? "active" : ""}>
+            {cartItemCount > 0 && (
+              <span className="cart-badge">{cartItemCount}</span>
+            )}
             <ShoppingCart size={18} style={{ verticalAlign: "middle", marginRight: "5px" }} />
             <span className="hide-on-mobile">Cart</span>
           </Link>
