@@ -1,8 +1,10 @@
 import React from "react";
 import { useCart } from "../components/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { cart } = useCart();
+  const navigate = useNavigate();
 
   const groupedItems = cart.reduce((acc, item) => {
     const existingItem = acc.find((i) => i.name === item.name);
@@ -49,6 +51,9 @@ const Cart = () => {
           </div>
         </div>
       )}
+      <button className="place-order-button" onClick={() => navigate("/Order")}>
+        Place Order
+      </button>
     </div>
   );
 };

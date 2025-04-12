@@ -35,6 +35,7 @@ const Login = () => {
     
             if (data.message === "Login successful") {
                 toast.success("Login successful!", { position: "top-center" });
+                localStorage.setItem('email', email);
                 setTimeout(() => navigate("/Home"), 1500);
             } else {
                 toast.error(data.message || "Login failed", { position: "top-center" });
@@ -44,7 +45,6 @@ const Login = () => {
             console.error("Login error:", error);
         }
     };
-    
 
     return (
         <div className="login-form">
