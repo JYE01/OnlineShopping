@@ -27,6 +27,7 @@ const Signup = () => {
                     middleName,
                     lastName,
                     password,
+                    action: "signup"
                 }),
             });
     

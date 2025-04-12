@@ -16,11 +16,10 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch("http://localhost/your-folder/connect.php", {
+            const res = await fetch("http://localhost/connect.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password, action: "login" }),
-                mode: 'cors'
             });
     
             const text = await res.text();  
