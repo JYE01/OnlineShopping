@@ -57,6 +57,11 @@ const Account = () => {
 
   console.log(userData);
 
+  const handleLogout = () => {
+    localStorage.removeItem('email');
+    navigate('/Home');
+  };
+
   if (!userData) return <div>Loading user data...</div>;
 
   return (
@@ -65,6 +70,9 @@ const Account = () => {
         <h2>Welcome, {userData.firstName || userData.email}</h2>
         <p><strong>Email:</strong> {userData.email}</p>
         <p><strong>Account ID:</strong> {userData.id}</p>
+        <button onClick={handleLogout} className="logout-button">
+          Logout
+        </button>
         <h3 className="sub-heading">Orders</h3>
         {orders.length === 0 ? (
           <p className="no-orders">No orders found</p>
@@ -72,6 +80,7 @@ const Account = () => {
           orders.map((order, index) => (
             <div key={index} className="order-card">
               <h4 style={{color: 'red'}}>Order #{order.orderNumber}</h4>
+              <p><strong>Paid:</strong> ${order.totalPrice}</p>
               <p><strong>Delivery:</strong> {order.delivery}</p>
               <div className="items-container">
                 {order.items.map((item, i) => (

@@ -60,6 +60,7 @@ const Order = () => {
           orderNumber,
           items: cart,
           delivery: address,
+          totalPrice: totalCartPrice.toFixed(2),
           payment: {
             cardNumber,
             expiry,
@@ -95,6 +96,10 @@ const Order = () => {
     }
   };
 
+  const totalCartPrice = cart.reduce((sum, item) => {
+    return sum + parseFloat(item.price) * item.quantity;
+  }, 0);
+
   return (
     <div className="order-form-container">
       <ToastContainer />
@@ -110,10 +115,13 @@ const Order = () => {
               {cart.map((item) => (
                 <li key={item.id}>
                   {item.name} × {item.quantity}
+                  <br></br>
+                  ${(parseFloat(item.price) * item.quantity).toFixed(2)}
                   <img src={item.image}/>
                 </li>
               ))}
             </ul>
+            <p><strong>Total Price: ${totalCartPrice.toFixed(2)}</strong></p>
           </div>
 
           <div className="order-details">

@@ -25,12 +25,20 @@ const CartProvider = ({ children }) => {
     });
   };
 
+  const updateCartItemQuantity = (id, newQuantity) => {
+    setCart(prevCart =>
+      prevCart.map(item =>
+        item.id === id ? { ...item, quantity: newQuantity } : item
+      )
+    );
+  };
+
   const removeFromCart = (productId) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, setCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, setCart, updateCartItemQuantity }}>
       {children}
     </CartContext.Provider>
   );

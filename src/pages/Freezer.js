@@ -45,7 +45,7 @@ const Freezer = () => {
   }
 
   const handleAddToCart = (product) => {
-    addToCart(product); 
+    addToCart(product, 1); 
     toast.success(`${product.name} added to cart!`);
   };
 

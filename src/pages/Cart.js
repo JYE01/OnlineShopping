@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import './Cart.css';
 
 const Cart = () => {
-  const { cart, removeFromCart } = useCart();
+  const { cart, setCart, removeFromCart, updateCartItemQuantity } = useCart();
   const navigate = useNavigate();
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -38,6 +38,15 @@ const Cart = () => {
       }
   };
 
+  const totalCartPrice = cart.reduce((sum, item) => {
+    return sum + parseFloat(item.price) * item.quantity;
+  }, 0);
+
+  const clearCart = () => {
+    localStorage.removeItem('cart');
+    setCart([]);
+  };
+
   return (
     <div className="cart-container">
       <h1>Your Cart</h1>
@@ -56,7 +65,23 @@ const Cart = () => {
                 <div className="cart-item-details">
                   <h3>{item.name}</h3>
                   <p>Price: ${item.price}</p>
-                  <p>Quantity: {item.quantity}</p>
+                  <label>
+                    Quantity: 
+                    <input 
+                      type="number" 
+                      value={item.quantity} 
+                      min="1" 
+                      max="99"
+                      style={{ width: "60px", marginLeft: "8px" }}
+                      onChange={(e) => {
+                        const value = parseInt(e.target.value);
+                        if (!isNaN(value) && value >= 1) {
+                          updateCartItemQuantity(item.id, value);
+                        }
+                      }}
+                    />
+                  </label>
+                  <p style={{textAlign: 'right', color:'green'}}>Item total price: ${(parseFloat(item.price) * item.quantity).toFixed(2)}</p>
                   <button
                     className="remove-button"
                     onClick={() => removeFromCart(item.id)}
@@ -68,8 +93,15 @@ const Cart = () => {
             ))}
             <div className="total-items">
               <h3>{totalItems} Differrent items in cart</h3>
+              <h3 style={{color: 'red'}}>Total cart price: ${totalCartPrice.toFixed(2)}</h3>
             </div>
           </div>
+          <div className="clear-cart-container">
+            <button className="clear-cart-button" onClick={clearCart}>
+              Clear Cart
+            </button>
+          </div>
+          <br></br>
           <button className="place-order-button" onClick={() => navigate("/Order")}>
             Place Order
           </button>
