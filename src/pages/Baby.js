@@ -67,11 +67,19 @@ const Baby = () => {
               />
               <h2 className="product-name">{product.name}</h2>
               <p className="product-price">${product.price}</p>
-              <p className="product-quantity">Stock: {product.quantity}</p>
+              <p className="product-quantity">Quantity: {product.quantity} —{" "}
+                {product.quantity > 0 ? (
+                  <span style={{ color: "green", fontWeight: "bold" }}>In Stock</span>
+                ) : (
+                  <span style={{ color: "red", fontWeight: "bold" }}>Out of Stock</span>
+                )}
+              </p>
             </Link>
-            <button onClick={() => handleAddToCart(product)} className="add-to-cart">
-              Add to Cart
-            </button>
+            {product.quantity > 0 && (
+              <button onClick={() => handleAddToCart(product)} className="add-to-cart">
+                Add to cart
+              </button>
+            )}
           </div>
         ))}
       </div>

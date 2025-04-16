@@ -3,6 +3,7 @@ import { useCart } from "../components/CartContext";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import './Order.css';
 
 const Order = () => {
   const { cart, setCart } = useCart();
@@ -16,16 +17,6 @@ const Order = () => {
 
   const email = localStorage.getItem("email");
   const orderNumber = `ORD-${Date.now()}`;
-
-  const groupedItems = cart.reduce((acc, item) => {
-    const found = acc.find((i) => i.id === item.id);
-    if (found) {
-      found.count += 1;
-    } else {
-      acc.push({ ...item, count: 1 });
-    }
-    return acc;
-  }, []);
 
   const validateCardDetails = () => {
     if (!cardNumber.trim() || !expiry.trim() || !cvv.trim()) {
@@ -67,7 +58,7 @@ const Order = () => {
           action: "place_order",
           email,
           orderNumber,
-          items: groupedItems,
+          items: cart,
           delivery: address,
           payment: {
             cardNumber,
@@ -109,16 +100,16 @@ const Order = () => {
       <ToastContainer />
       <h2>Checkout</h2>
 
-      {groupedItems.length === 0 ? (
+      {cart.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
         <>
           <div className="order-summary">
             <h3>Order Summary</h3>
             <ul>
-              {groupedItems.map((item) => (
+              {cart.map((item) => (
                 <li key={item.id}>
-                  {item.name} × {item.count}
+                  {item.name} × {item.quantity}
                   <img src={item.image}/>
                 </li>
               ))}

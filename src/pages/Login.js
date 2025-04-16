@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import './Form.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -21,10 +23,10 @@ const Login = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password, action: "login" }),
             });
-    
+
             const text = await res.text();  
             console.log("Raw response:", text); 
-    
+
             let data;
             try {
                 data = JSON.parse(text);
@@ -32,7 +34,7 @@ const Login = () => {
                 toast.error("Server returned invalid JSON", { position: "top-center" });
                 return;
             }
-    
+
             if (data.message === "Login successful") {
                 toast.success("Login successful!", { position: "top-center" });
                 localStorage.setItem('email', email);
@@ -47,33 +49,44 @@ const Login = () => {
     };
 
     return (
-        <div className="login-form">
-            <h2>Login</h2>
-            <form onSubmit={handleLogin}>
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <div>
-                    <input
-                        type={isPasswordVisible ? "text" : "password"}
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                    <button type="button" onClick={togglePasswordVisibility}>
-                        {isPasswordVisible ? "Hide" : "Show"}
-                    </button>
-                </div>
-                <button type="submit">Login</button>
-            </form>
-            <ToastContainer />
+        <div className="form-forms">
+            <div className="form-content">
+                <header>Login</header>
+                <form onSubmit={handleLogin}>
+                    <div className="field">
+                        <input
+                            type="email"
+                            className="input"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="field">
+                        <input
+                            type={isPasswordVisible ? "text" : "password"}
+                            className="input"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                        <span className="eye-icon" onClick={togglePasswordVisibility}>
+                            {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+                        </span>
+                    </div>
+                    <div className="button-field">
+                        <button className="pageButton" type="submit">Login</button>
+                    </div>
+                </form>
+                <p className="form-link">
+                    Don't have an account? <Link to="/Signup">Sign up</Link>
+                </p>
+                <ToastContainer />
+            </div>
         </div>
     );
-}
+};
 
-export default Login
+export default Login;

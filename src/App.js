@@ -26,6 +26,7 @@ function App() {
       <Route path="/" element={<MainLayout />}>
         <Route index element = {<Home />} />
         <Route path = "Home" element ={<Home />} />
+        <Route path = "Login" element ={<Login />} />
         <Route path = "Meat" element ={<Meat />} />
         <Route path = "FruitVeg" element ={<FruitVeg />} /> 
         <Route path = "Dairy" element ={<Dairy />} />
@@ -40,7 +41,6 @@ function App() {
         <Route path = "ProductAdmin" element ={<ProductAdmin />} />
         <Route path = "Order" element ={<Order />} />
       </Route>
-      <Route path = "Login" element ={<Login />} />
       <Route path = "Signup" element ={<Signup />} />
     </Routes>
     </CartProvider>

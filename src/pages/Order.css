@@ -1,0 +1,100 @@
+/* Order.css */
+
+.order-form-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  h2, h3 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .order-summary {
+    margin-bottom: 2rem;
+  }
+  
+  .order-summary ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .order-summary li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding: 1rem 0;
+    font-size: 1rem;
+  }
+  
+  .order-summary img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-left: 1rem;
+    border: 1px solid #ccc;
+  }
+  
+  .order-details label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    color: #444;
+  }
+  
+  .order-details input {
+    width: 100%;
+    padding: 10px 14px;
+    margin-top: 6px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .order-details input:focus {
+    outline: none;
+    border-color: #0077cc;
+  }
+  
+  .order-details button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 1rem;
+    background-color: #28a745;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .order-details button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .order-details button:hover:not(:disabled) {
+    background-color: #218838;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .order-summary li {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .order-summary img {
+      margin: 0.5rem 0 0 0;
+    }
+  }
+  
