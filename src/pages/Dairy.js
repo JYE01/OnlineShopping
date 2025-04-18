@@ -52,7 +52,7 @@ const Dairy = () => {
   return (
     <div className="home-container">
       <div className="title-search-container">
-        <h1 className="title">🥛 Dairy</h1>
+        <h1 className="title">🧀🍶 Dairy</h1>
         <SearchBar />
       </div>
       <div className="product-grid">

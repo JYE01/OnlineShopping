@@ -53,7 +53,7 @@ const Pet = () => {
   return (
     <div className="home-container">
       <div className="title-search-container">
-        <h1 className="title">🐶 Pet</h1>
+        <h1 className="title">🐶🐱 Pet</h1>
         <SearchBar />
       </div>
       <div className="product-grid">

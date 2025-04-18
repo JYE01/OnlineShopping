@@ -14,6 +14,36 @@ const SubProductPage = () => {
     const [page, setPage] = useState(1);
     const productsPerPage = 18;
     const { addToCart } = useCart();
+    const subtypeEmojis = {
+        Beef: "🐄",
+        Chicken: "🐔",
+        Pork: "🐖",
+        Lamb: "🐑",
+        Fruits: "🍎",
+        Vegetables: "🥦",
+        Milk: "🥛",
+        Cheese: "🧀",
+        Yogurt: "🍶",
+        Butter: "🧈",
+        "Frozen Meals": "🍱",
+        "Frozen FruitVeg": "❄️🥬",
+        "Ice Cream": "🍨",
+        Bread: "🍞",
+        Wrap: "🌯",
+        Pastries: "🍪",
+        Kitchen: "🍽️",
+        "Party-Supplies": "🥳",
+        Stationery: "🖊️",
+        Toilet: "🚽",
+        Formula: "🍼",
+        Wipes: "🧻",
+        Clothes: "👕",
+        Food: "🍲",
+        Bath: "🛁",
+        Health: "💊",
+        Dog: "🐶",
+        Cat: "🐱",
+      };
 
     useEffect(() => {
         fetch(`http://localhost/connect.php?type=${type}&subType=${subType}`)
@@ -47,7 +77,7 @@ const SubProductPage = () => {
     return (
         <div className="home-container">
             <div className="title-search-container">
-                <h1 className="title">SubType Product</h1>
+                <h1 className="title">{subtypeEmojis[subType]} {subType}</h1>
                 <SearchBar />
             </div>
             <div className="product-grid">
