@@ -39,11 +39,6 @@ const Order = () => {
   };
 
   const handleOrder = async () => {
-    if (!address.trim()) {
-      toast.warn("Please enter a delivery address!", { autoClose: 3000 });
-      return;
-    }
-
     if (!validateCardDetails()) return;
 
     setLoading(true);
@@ -59,7 +54,7 @@ const Order = () => {
           email,
           orderNumber,
           items: cart,
-          delivery: address,
+          delivery: `${address.street}, ${address.city}, ${address.state}`,
           totalPrice: totalCartPrice.toFixed(2),
           payment: {
             cardNumber,
@@ -125,15 +120,52 @@ const Order = () => {
           </div>
 
           <div className="order-details">
-            <label>
-              Delivery Address:
-              <input
-                type="text"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                required
-              />
-            </label>
+            <div className="address-section">
+              <label>
+                Street Address:
+                <input
+                  type="text"
+                  value={address.street || ""}
+                  onChange={(e) =>
+                    setAddress({ ...address, street: e.target.value })
+                  }
+                  required
+                />
+              </label>
+
+              <label>
+                City / Suburb:
+                <input
+                  type="text"
+                  value={address.city || ""}
+                  onChange={(e) =>
+                    setAddress({ ...address, city: e.target.value })
+                  }
+                  required
+                />
+              </label>
+
+              <label>
+                State / Territory:
+                <select
+                  value={address.state || ""}
+                  onChange={(e) =>
+                    setAddress({ ...address, state: e.target.value })
+                  }
+                  required
+                >
+                  <option value="">Select a state</option>
+                  <option value="NSW">New South Wales (NSW)</option>
+                  <option value="VIC">Victoria (VIC)</option>
+                  <option value="QLD">Queensland (QLD)</option>
+                  <option value="WA">Western Australia (WA)</option>
+                  <option value="SA">South Australia (SA)</option>
+                  <option value="TAS">Tasmania (TAS)</option>
+                  <option value="ACT">Australian Capital Territory (ACT)</option>
+                  <option value="NT">Northern Territory (NT)</option>
+                </select>
+              </label>
+            </div>
 
             <h3>Payment Info</h3>
             <label>

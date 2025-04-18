@@ -97,4 +97,16 @@
       margin: 0.5rem 0 0 0;
     }
   }
+
+  .address-section label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .address-section input,
+  .address-section select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+  }
   

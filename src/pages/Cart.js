@@ -10,6 +10,28 @@ const Cart = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const [productQuantities, setProductQuantities] = useState({});
+
+  useEffect(() => {
+    const fetchQuantities = async () => {
+      const updatedQuantities = {};
+
+      await Promise.all(cart.map(async (item) => {
+        try {
+          const response = await axios.get(`http://localhost/connect.php?product=${encodeURIComponent(item.name)}`);
+          if (response.data && response.data.length > 0) {
+            updatedQuantities[item.id] = response.data[0].quantity;
+          }
+        } catch (err) {
+          console.error(`Error fetching quantity for ${item.name}`, err);
+        }
+      }));
+
+      setProductQuantities(updatedQuantities);
+    };
+
+    fetchQuantities();
+  }, [cart]);
 
   useEffect(() => {
     axios
@@ -71,12 +93,21 @@ const Cart = () => {
                       type="number" 
                       value={item.quantity} 
                       min="1" 
-                      max="99"
+                      max={productQuantities[item.id]}
                       style={{ width: "60px", marginLeft: "8px" }}
                       onChange={(e) => {
-                        const value = parseInt(e.target.value);
+                        const stringValue = e.target.value;
+                        if (stringValue === '') {
+                            updateCartItemQuantity(item.id,'');
+                            return;
+                        }
+
+                        const value = parseInt(stringValue);
+                        const max = productQuantities[item.id];
+                        
                         if (!isNaN(value) && value >= 1) {
-                          updateCartItemQuantity(item.id, value);
+                          const limit = Math.min(value, max);
+                          updateCartItemQuantity(item.id, limit);
                         }
                       }}
                     />
@@ -104,9 +135,11 @@ const Cart = () => {
             </button>
           </div>
           <br></br>
-          <button className="place-order-button" onClick={() => navigate("/Order")}>
-            Place Order
-          </button>
+          {totalItems > 0 && (
+            <button className="place-order-button" onClick={() => navigate("/Order")}>
+              Place Order
+            </button>
+          )}
         </>
       )}
       {relatedProducts.length > 0 && (
