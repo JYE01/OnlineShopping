@@ -9,7 +9,7 @@ const Cart = () => {
   const navigate = useNavigate();
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const totalItems = cart.length;
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   useEffect(() => {
     axios
@@ -92,8 +92,10 @@ const Cart = () => {
               </div>
             ))}
             <div className="total-items">
-              <h3>{totalItems} Differrent items in cart</h3>
-              <h3 style={{color: 'red'}}>Total cart price: ${totalCartPrice.toFixed(2)}</h3>
+              <h3>{totalItems} {totalItems === 1 ? "item" : "items"} in cart</h3>
+              <h3 style={{ color: 'red' }}>
+                Total cart price: ${totalCartPrice.toFixed(2)}
+              </h3>
             </div>
           </div>
           <div className="clear-cart-container">
